@@ -99,7 +99,7 @@ const float4x4 cg::world::camera::get_projection_matrix() const
 {
 	float f = 1.f / std::tanf(angle_of_view/ 2.f);
 	return float4x4{
-			{f/ angle_of_view, 0,0,0},
+			{f/ aspect_ratio, 0,0,0},
 			{0, f, 0, 0},
 			{0, 0, z_far/(z_near - z_far), -1},
 			{0, 0, (z_far * z_near) / (z_near - z_far), 0}
