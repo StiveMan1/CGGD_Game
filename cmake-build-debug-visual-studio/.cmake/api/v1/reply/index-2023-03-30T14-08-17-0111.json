@@ -8,10 +8,10 @@
 		},
 		"paths" : 
 		{
-			"cmake" : "C:/Users/04024/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/223.8617.54/bin/cmake/win/x64/bin/cmake.exe",
-			"cpack" : "C:/Users/04024/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/223.8617.54/bin/cmake/win/x64/bin/cpack.exe",
-			"ctest" : "C:/Users/04024/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/223.8617.54/bin/cmake/win/x64/bin/ctest.exe",
-			"root" : "C:/Users/04024/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/223.8617.54/bin/cmake/win/x64/share/cmake-3.24"
+			"cmake" : "C:/Users/04024/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/223.8836.42/bin/cmake/win/x64/bin/cmake.exe",
+			"cpack" : "C:/Users/04024/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/223.8836.42/bin/cmake/win/x64/bin/cpack.exe",
+			"ctest" : "C:/Users/04024/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/223.8836.42/bin/cmake/win/x64/bin/ctest.exe",
+			"root" : "C:/Users/04024/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/223.8836.42/bin/cmake/win/x64/share/cmake-3.24"
 		},
 		"version" : 
 		{
@@ -35,7 +35,7 @@
 			}
 		},
 		{
-			"jsonFile" : "cache-v2-cb830b0398a57c940201.json",
+			"jsonFile" : "cache-v2-5d5e1c0a276896df26f9.json",
 			"kind" : "cache",
 			"version" : 
 			{
@@ -44,7 +44,7 @@
 			}
 		},
 		{
-			"jsonFile" : "cmakeFiles-v1-14bec7dc84395140fc7b.json",
+			"jsonFile" : "cmakeFiles-v1-fc0b5bc2268396f28697.json",
 			"kind" : "cmakeFiles",
 			"version" : 
 			{
@@ -66,7 +66,7 @@
 	{
 		"cache-v2" : 
 		{
-			"jsonFile" : "cache-v2-cb830b0398a57c940201.json",
+			"jsonFile" : "cache-v2-5d5e1c0a276896df26f9.json",
 			"kind" : "cache",
 			"version" : 
 			{
@@ -76,7 +76,7 @@
 		},
 		"cmakeFiles-v1" : 
 		{
-			"jsonFile" : "cmakeFiles-v1-14bec7dc84395140fc7b.json",
+			"jsonFile" : "cmakeFiles-v1-fc0b5bc2268396f28697.json",
 			"kind" : "cmakeFiles",
 			"version" : 
 			{
