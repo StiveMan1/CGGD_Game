@@ -8,7 +8,6 @@
 void cg::renderer::ray_tracing_renderer::init()
 {
 	render_target = std::make_shared<cg::resource<cg::unsigned_color>>(settings->width, settings->height);
-
 	model = std::make_shared<cg::world::model>();
 	model->load_obj(settings->model_path);
 
@@ -33,12 +32,31 @@ void cg::renderer::ray_tracing_renderer::init()
 	raytracer->set_vertex_buffers(model->get_vertex_buffers());
 	raytracer->set_index_buffers(model->get_index_buffers());
 
-	lights.push_back({
-			float3{0.f, 1.8f, -0.03f},
-			float3{0.78f, 0.78f, 0.78f},
-	});
+	lights.push_back(
+			{
+					float3{-0.24f, 1.8f, 0.16f},
+					float3{0.78f, 0.78f, 0.78f} * 0.25f,
+			});
 
-	// TODO Lab: 2.04 Initialize `shadow_raytracer` in `ray_tracing_renderer`
+	lights.push_back(
+			{
+					float3{-0.24f, 1.8f, -0.22f},
+					float3{0.78f, 0.78f, 0.78f} * 0.25f,
+			});
+
+	lights.push_back(
+			{
+					float3{0.23f, 1.8f, 0.16f},
+					float3{0.78f, 0.78f, 0.78f} * 0.25f,
+			});
+
+	lights.push_back(
+			{
+					float3{0.23f, 1.8f, -0.22f},
+					float3{0.78f, 0.78f, 0.78f} * 0.25f,
+			});
+
+	shadow_raytracer = std::make_shared<cg::renderer::raytracer<cg::vertex, cg::unsigned_color>>();
 }
 
 void cg::renderer::ray_tracing_renderer::destroy() {}
@@ -47,13 +65,25 @@ void cg::renderer::ray_tracing_renderer::update() {}
 
 void cg::renderer::ray_tracing_renderer::render()
 {
+	shadow_raytracer->any_hit_shader = [](const ray& ray, payload& payload, const triangle<cg::vertex>& triangle) {
+		return payload;
+	};
+
+	shadow_raytracer->any_hit_shader = [](const ray& ray, payload& payload, const triangle<cg::vertex>& triangle) {
+		return payload;
+	};
+
 	raytracer->clear_render_target({0, 0, 0});
 
 	raytracer->miss_shader = [](const ray &ray){
 		payload payload{};
-		payload.color = {0.f, 0.f, (ray.direction.y + 1.f) * 0.5f};
+		payload.color = {0.f, 0.f, 0.f};
 		return payload;
 	};
+
+	std::random_device random_device;
+	std::mt19937 random_generator(random_device());
+	std::uniform_real_distribution<float> uniform_distribution(-1.f, 1.f);
 
 	raytracer->closest_hit_shader = [&](const ray& ray, payload& payload, const triangle<cg::vertex>& triangle, size_t depth) {
 		float3 position = ray.position + ray.direction * payload.t;
@@ -64,16 +94,29 @@ void cg::renderer::ray_tracing_renderer::render()
 		);
 		float3 result_color = triangle.emissive;
 
-		for (auto& light : lights) {
-			cg::renderer::ray to_light(position, light.position - position);
-			result_color += triangle.diffuse * light.color * std::max(dot(normal, to_light.direction), 0.f);
+		float3 random_direction{
+				uniform_distribution(random_generator),
+				uniform_distribution(random_generator),
+				uniform_distribution(random_generator),
+		};
+
+		if (dot(normal, random_direction) < 0.f) {
+			random_direction = -random_direction;
 		}
+
+		cg::renderer::ray to_next_object(position, random_direction);
+		auto payload_next = raytracer->trace_ray(to_next_object, depth);
+
+
+		result_color += triangle.diffuse * payload_next.color.to_float3() *
+						std::max(dot(normal, to_next_object.direction), 0.f);
 
 		payload.color = cg::color::from_float3(result_color);
 		return payload;
 	};
 
 	raytracer->build_acceleration_structure();
+	shadow_raytracer->acceleration_structures = raytracer->acceleration_structures;
 
 	auto start = std::chrono::high_resolution_clock::now();
 	raytracer->ray_generation(
@@ -89,10 +132,4 @@ void cg::renderer::ray_tracing_renderer::render()
 	std::cout << "Ray tracing took " << rt_duration.count() << " ms\n";
 
 	cg::utils::save_resource(*render_target, settings->result_path);
-	// TODO Lab: 2.02 Add `closest_hit_shader` to `raytracer` class to return diffuse color
-	// TODO Lab: 2.03 Adjust `closest_hit_shader` of `raytracer` to implement Lambertian shading model
-	// TODO Lab: 2.04 Define `any_hit_shader` and `miss_shader` for `shadow_raytracer`
-	// TODO Lab: 2.04 Adjust `closest_hit_shader` of `raytracer` to cast shadows rays and to ignore occluded lights
-	// TODO Lab: 2.05 Adjust `ray_tracing_renderer` class to build the acceleration structure
-	// TODO Lab: 2.06 (Bonus) Adjust `closest_hit_shader` for Monte-Carlo light tracing
 }
