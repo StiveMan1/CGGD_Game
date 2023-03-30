@@ -50,6 +50,13 @@ void cg::renderer::ray_tracing_renderer::render()
 		return payload;
 	};
 
+	raytracer->closest_hit_shader = [](const ray& ray, payload& payload, const triangle<cg::vertex>& triangle, size_t depth) {
+		payload.color = cg::color::from_float3(triangle.diffuse);
+		return payload;
+	};
+
+	raytracer->build_acceleration_structure();
+
 	auto start = std::chrono::high_resolution_clock::now();
 	raytracer->ray_generation(
 			camera->get_position(),

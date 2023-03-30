@@ -32,3 +32,5 @@
 2096	5669	7018885128105346	CMakeFiles/Raytracing.dir/src/utils/resource_utils.cpp.obj	3978779f910cdd4b
 53	6302	7018885134837385	CMakeFiles/Raytracing.dir/src/settings.cpp.obj	c474acbff7ab0e1a
 6306	7827	7018885150021209	Raytracing.exe	8fbd55256e28c658
+2	1618	7018914082158281	CMakeFiles/Raytracing.dir/src/renderer/raytracer/raytracer_renderer.cpp.obj	31a7e55ceafbcbdb
+1624	2232	7018914087572584	Raytracing.exe	8fbd55256e28c658
