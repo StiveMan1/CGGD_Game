@@ -1,19 +1,4 @@
 C:\Users\04024\AppData\Local\JetBrains\Toolbox\apps\CLion\ch-0\223.8836.42\bin\cmake\win\x64\bin\cmake.exe -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=C:/Users/04024/AppData/Local/JetBrains/Toolbox/apps/CLion/ch-0/223.8836.42/bin/ninja/win/x64/ninja.exe -DCMAKE_GNUtoMS:BOOL=OFF -G Ninja -S C:\Users\04024\CLionProjects\CGGD_temp1 -B C:\Users\04024\CLionProjects\CGGD_temp1\cmake-build-debug-visual-studio
--- The C compiler identification is MSVC 19.34.31942.0
--- The CXX compiler identification is MSVC 19.34.31942.0
--- Detecting C compiler ABI info
--- Detecting C compiler ABI info - done
--- Check for working C compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/cl.exe - skipped
--- Detecting C compile features
--- Detecting C compile features - done
--- Detecting CXX compiler ABI info
--- Detecting CXX compiler ABI info - done
--- Check for working CXX compiler: C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.34.31933/bin/Hostx86/x86/cl.exe - skipped
--- Detecting CXX compile features
--- Detecting CXX compile features - done
--- Found OpenMP_C: -openmp (found version "2.0") 
--- Found OpenMP_CXX: -openmp (found version "2.0") 
--- Found OpenMP: TRUE (found version "2.0")  
 -- Configuring done
 -- Generating done
 -- Build files have been written to: C:/Users/04024/CLionProjects/CGGD_temp1/cmake-build-debug-visual-studio
